@@ -38,13 +38,13 @@ function Product() {
                 <div className="flex gap-2 items-center justify-center  w-full">
                   <button
                     onClick={() => dispatch(addItem(product))}
-                    className="text-2xl bg-amber-800 p-2 cursor-pointer transition duration-200 hover:bg-amber-700 font-medium w-[60%] text-white rounded-lg mt-4"
+                    className="text-lg md:text-2xl lg:text-2xl bg-amber-800 p-2 cursor-pointer transition duration-200 hover:bg-amber-700 font-medium w-[60%] text-white rounded-lg mt-4"
                   >
                     Add
                   </button>
                   <button
                     onClick={() => dispatch(removeItem(product))}
-                    className="text-2xl bg-red-800 p-2 cursor-pointer transition duration-200 hover:bg-red-700 font-medium w-[60%] text-white rounded-lg mt-4"
+                    className="text-lg md:text-2xl lg:text-2xl bg-red-800 p-2 cursor-pointer transition duration-200 hover:bg-red-700 font-medium w-[60%] text-white rounded-lg mt-4"
                   >
                     Remove
                   </button>
@@ -52,7 +52,7 @@ function Product() {
               ) : (
                 <button
                   onClick={() => dispatch(addItem(product))}
-                  className="text-2xl bg-amber-800 p-2 cursor-pointer transition duration-200 hover:bg-amber-700 font-medium w-full text-white rounded-lg mt-4"
+                  className="text-lg md:text-2xl lg:text-2xl bg-amber-800 p-2 cursor-pointer transition duration-200 hover:bg-amber-700 font-medium w-full text-white rounded-lg mt-4"
                 >
                   Add to Cart
                 </button>
@@ -61,7 +61,7 @@ function Product() {
           );
         })
       ) : (
-        <p className=" mt-4 text-2xl font-bold">Products Not Found</p>
+        <p className=" mt-4 text-2xl font-bold text-center">Products Not Found</p>
       )}
     </div>
   );
