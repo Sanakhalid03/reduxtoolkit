@@ -43,9 +43,7 @@ const addToCart=createSlice({
       localStorage.setItem("cart",JSON.stringify(state.items))
         
       },
-      //  clearAllItem:(state)=>{
-          
-      //  },
+    
     }
 })
 export const {addItem,removeItem}=addToCart.actions;

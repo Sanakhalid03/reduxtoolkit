@@ -9,9 +9,8 @@ function ProductPage() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
   const productSelector = useAppSelector((state) => state.products.items);
-  console.log(productSelector);
   const cartSelector = useAppSelector((state) => state.cart.items);
   const product = productSelector.find((item) => item.id === Number(id));
   const cartProduct = cartSelector.find((item) => item.id === product?.id);

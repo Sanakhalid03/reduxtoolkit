@@ -1,25 +1,33 @@
 import { useAppDispatch, useAppSelector } from "../Redux/Hooks";
 import { addItem, removeItem } from "../Redux/slice";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { fetchProducts } from "../Redux/productSlice";
 import { Link } from "react-router-dom";
 function Product() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
   const productSelector = useAppSelector((state) => state.products.items);
-  console.log(productSelector);
   const cartSelector = useAppSelector((state) => state.cart.items);
+  const random= useMemo(()=>{
+    return [...productSelector].sort(()=>0.5 - Math.random()).slice(0,20)
+  },[productSelector])
+
   return (
-    <div className="w-[95%] md:w-[90vw] lg:w-[90vw] md:flex md:gap-8 md:justify-center md:flex-wrap lg:flex lg:gap-8 lg:justify-center lg:flex-wrap  bg-white shadow-lg shadow-amber-900 mx-auto mt-5 md:p-10 lg:p-10">
-      {productSelector.length > 0 ? (
-        productSelector.map((product) => {
+    <div className="w-[95%] md:w-[90vw] lg:w-[90vw]  bg-white shadow-lg shadow-amber-900 mx-auto mt-5 py-10 md:p-10 lg:p-10">
+     <h1 className="text-center text-amber-900 text-4xl font-bold ">Our Latest Products</h1>
+    <div className="w-full md:w-full lg-w-full md:flex md:gap-8 md:justify-center md:flex-wrap lg:flex lg:gap-8 lg:justify-center lg:flex-wrap  mt-8">
+    
+      {random.length > 0 ? (
+          random.map((product) => {
           return (
+            
             <div
               key={product.id}
               className="flex flex-col items-center p-5 w-full md:w-[30vw] lg:w-[19vw] gap-1 rounded-md  shadow-lg shadow-amber-800 mt-5 transition cursor-pointer duration-200 hover:shadow-2xl "
             >
+
               <Link to={`/productpage/${product.id} `}>
                 {" "}
                 <img src={product.thumbnail} alt="" className="w-50 h-60 " />
@@ -64,7 +72,7 @@ function Product() {
         <p className=" mt-4 text-2xl font-bold text-center">Products Not Found</p>
       )}
     </div>
-  );
+ </div> );
 }
 
 export default Product;
